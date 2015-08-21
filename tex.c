@@ -94,7 +94,7 @@ void unset_zbuff()
 
 static inline void clear_zbuff()
 {
-    memset(zbuff, 0x55, (X_s * Y_s * sizeof(long)));
+    memset(zbuff, 0x55, (X_s * Y_s * sizeof(int)));
 }
 
 
