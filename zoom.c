@@ -199,6 +199,7 @@ struct dyn_data {
 #define adddata(n,i) ((((n)<<DSIZES)+(((i)&(DSIZEHMASK)))))
 #define getbest(i) (((size)<<DSIZES)+(i))
 
+/* XXXstroucki operation may be undefined */
 #define PRICE(i,i1) ((((ftmp=((i)-(i1)))*ftmp)*(rangedelta)))
 #define NEWPRICE (FPMUL)
 
@@ -241,13 +242,13 @@ static /*INLINE */ void mkrealloc_table(register number_t * pos, realloc_t * rea
 #endif
     if (dyndata == NULL) {
 	fprintf(stderr, "XaoS fatal error:Could not allocate memory for"
-		"temporary dynamical data of size:%i\n"
+		"temporary dynamical data of size:%lu\n"
 		"I am unable to handle this problem so please resize to lower window\n", (size) * (DSIZE + 1) * sizeof(struct dyn_data) + size * sizeof(int) + size * sizeof(int));
 	return;
     }
     if (best == NULL) {
 	fprintf(stderr, "XaoS fatal error:Could not allocate memory for"
-		"temporary dynamical data of size:%i\n"
+		"temporary dynamical data of size:%lu\n"
 		"I am unable to handle this problem so please resize to lower window\n", (size) * (DSIZE + 1) * sizeof(struct dyn_data) + size * sizeof(int) + size * sizeof(int));
 #ifndef HAVE_ALLOCA
 	free(dyndata);
@@ -256,7 +257,7 @@ static /*INLINE */ void mkrealloc_table(register number_t * pos, realloc_t * rea
     }
     if (best1 == NULL) {
 	fprintf(stderr, "XaoS fatal error:Could not allocate memory for"
-		"temporary dynamical data of size:%i\n"
+		"temporary dynamical data of size:%lu\n"
 		"I am unable to handle this problem so please resize to lower window\n", (size) * (DSIZE + 1) * sizeof(struct dyn_data) + size * sizeof(int) + size * sizeof(int));
 #ifndef HAVE_ALLOCA
 	free(dyndata);
@@ -586,13 +587,13 @@ static /*INLINE */ void moveoldpoints(void)
 #endif
     if (size == NULL) {
 	fprintf(stderr, "XaoS fratal error:Could not allocate memory for"
-		"temporary dynamical data of size:%i\n"
+		"temporary dynamical data of size:%lu\n"
 		"I am unable to handle this problem so please resize to lower window\n", 2 * d->width * sizeof(int));
 	return;
     }
     if (start == NULL) {
 	fprintf(stderr, "XaoS fratal error:Could not allocate memory for"
-		"temporary dynamical data of size:%i\n"
+		"temporary dynamical data of size:%lu\n"
 		"I am unable to handle this problem so please resize to lower window\n", 2 * d->width * sizeof(int));
 #ifndef HAVE_ALLOCA
 	free(size);
@@ -1048,7 +1049,7 @@ static /*INLINE */ void fill(void)
 		rx->possition = rs->possition;
 		rx++;
 	    }
-	    if (rs1 != NULL)
+	    if (rs1 != NULL) {
 		if (n == 1) {
 		    for (; vbuff < vend; vbuff += d->scanline, vsrc += d->scanline)
 			*vbuff = *vsrc;
@@ -1056,6 +1057,7 @@ static /*INLINE */ void fill(void)
 		    for (; vbuff < vend; vbuff += d->scanline, vsrc += d->scanline)
 			memset((char *) vbuff, (int) *vsrc, (size_t) n);
 		}
+	    }
 	}
     }
 }
@@ -1519,7 +1521,7 @@ void rotate_palette(zoom_context * c, int direction)
 
 
 zoom_context *
- make_context(CONST int width, CONST int height, CONST int scanline, CONST int formula, CONST int full, void (*switchptr) (void), void (*waitfunc) (void), char *vbuf, char *bckup, double wi, double he)
+ make_context(CONST int width, CONST int height, CONST int scanline, CONST int formula, CONST int full, void (*switchptr) (void), void (*waitfunc) (void), unsigned char *vbuf, unsigned char *bckup, double wi, double he)
 {
     zoom_context *new;
     assert(width > 0 && width < 65000);
