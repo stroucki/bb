@@ -467,7 +467,7 @@ void scene6(void)
 {
     int width, height, scanline;
     int i, formula = 0;
-    char *buffer1, *buffer2;
+    unsigned char *buffer1, *buffer2;
     displayed = 0;
     incalculation = 0;
     fastmode = 2;
@@ -533,7 +533,7 @@ void scene7(void)
 {
     int width, height, scanline;
     int i, formula = 0;
-    char *buffer1;
+    unsigned char *buffer1;
     signal(SIGFPE, SIG_IGN);
     width = aa_imgwidth(context);
     height = aa_imgheight(context);
