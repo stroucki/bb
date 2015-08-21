@@ -4,8 +4,8 @@
 /* #undef C_ALLOCA */
 /* #undef const */
 #define HAVE_ALLOCA 1
-#define HAVE_ALLOCA_H 1
-#define HAVE_FTIME 1
+/* #undef HAVE_ALLOCA_H */
+/* #undef HAVE_FTIME */
 #define HAVE_SELECT 1
 /* #undef HAVE_LONG_DOUBLE */
 /* #undef inline */
