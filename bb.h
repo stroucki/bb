@@ -98,7 +98,7 @@ void vezen(struct image *i1, struct image *i2, struct image *i3, struct image *i
 void play();
 void update_sound();
 void wait_sound();
-char *decompressimg(struct image *image);
+unsigned char *decompressimg(struct image *image);
 void scale(struct image *image, int x1, int y1, int x2, int y2);
 extern int textsize;
 extern char *line[];
