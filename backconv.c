@@ -23,6 +23,12 @@
 
 #include "bb.h"
 
+/* An hack - but I did aalib, so I can hack :) */
+struct parameters
+{
+  unsigned int p[AA_NPARAMS];
+};
+
 void backconvert(int x1, int y1, int x2, int y2)
 {
     int x, y;
