@@ -1,0 +1,98 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+
+
+ ============================================================================
+ miniLZO -- mini version of the LZO real-time data compression library
+ ============================================================================
+
+ Author  : Markus Franz Xaver Johannes Oberhumer
+           <markus.oberhumer@jk.uni-linz.ac.at>
+           http://www.infosys.tuwien.ac.at/Staff/lux/marco/lzo.html
+ Version : 1.00
+ Date    : 13-Jul-1997
+
+ I've created miniLZO for projects where it is inconvenient to
+ include (or require) the full LZO source code just because you
+ want to add a little bit of data compression to your application.
+
+ miniLZO implements the LZO1X-1 compressor and both the standard and
+ safe LZO1X decompressor. Apart from fast compression it also useful
+ for situations where you want to use pre-compressed data files (which
+ must have been compressed with LZO1X-999).
+
+ miniLZO consists of one C source file and two header files:
+    minilzo.c
+    minilzo.h
+    ../include/lzoconf.h
+
+ To use miniLZO just copy these files into your source directory, add
+ minilzo.c to your Makefile and #include minilzo.h from your program.
+
+ minilzo.o compiles to about 6 kB (using gcc or Watcom C on a i386), and
+ the sources are about 14 kB when packed with zip - so there's no more
+ excuse that your application doesn't support data compression :-)
+
+ For more information, documentation and other support files (like Makefiles
+ and build scripts) please download the full LZO package from
+    http://www.infosys.tuwien.ac.at/Staff/lux/marco/lzo.html
+
+ Have fun,
+  Markus
+
+
+
+ Appendix A: building miniLZO
+ ----------------------------
+ miniLZO is written such a way that it (hopefully) should compile
+ and run out-of-the box on most machines.
+
+ If you are running on an unusual architecture and lzo_init() fails then
+ you should first recompile with `-DLZO_DEBUG' to see what causes the
+ failure. The most probable case is that sizeof(char *) != sizeof(long).
+
+ After identifying the problem you can workaround by adding some defines
+ like `-DSIZEOF_CHAR_P=8' to your Makefile.
+ The best solution is (of course) using Autoconf - if your project uses
+ Autoconf anyway just add `-DMINILZO_HAVE_CONFIG_H' to your compiler
+ flags. See the LZO distribution for an example how to set up `configure.in'.
+
+
+ Appendix B: list of public functions available in miniLZO
+ ---------------------------------------------------------
+
+ Library initialization
+    lzo_init()
+
+ Compression
+    lzo1x_1_compress()
+
+ Decompression
+    lzo1x_decompress()
+    lzo1x_decompress_safe()
+
+ Checksum functions
+    lzo_adler32()
+
+ Version functions
+    lzo_version()
+    lzo_version_string()
+    lzo_version_date()
+
+ Portable (but slow) string functions
+    lzo_memcmp()
+    lzo_memcpy()
+    lzo_memset()
+
+
+
+
+-----BEGIN PGP SIGNATURE-----
+Version: 2.6.3i
+Charset: noconv
+
+iQCVAwUBM8jvFW10fyLu8beJAQGlIQQApVHFnjS6ZntZGQcggpp8P+UQXxnWbbKM
+2bd6jDCuxIXETqiTGi8JaiG1izbu1x+fGVludpCCVwbteRvLC9++YGM5H0S7Fzam
+pgOWH1Z2iLYOWGhDbgBred882nyOIDiUksel0OD7s84xfcSuIV5QUqtd/K6korS6
+AoB5FYDrZQM=
+=qx4Z
+-----END PGP SIGNATURE-----

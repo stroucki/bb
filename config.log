@@ -1,0 +1,54 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:531: checking for gcc
+configure:608: checking whether the C compiler (gcc  ) works
+configure:622: gcc -o conftest    conftest.c  1>&5
+configure:642: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:647: checking whether we are using GNU C
+configure:671: checking whether gcc accepts -g
+configure:729: checking for a BSD compatible install
+configure:781: checking for uname
+configure:811: checking for uname
+configure:839: checking how to run the C preprocessor
+configure:900: checking for ANSI C header files
+configure:1050: checking whether make sets ${MAKE}
+configure:1082: checking for X
+configure:1396: checking for dnet_ntoa in -ldnet
+configure:1437: checking for dnet_ntoa in -ldnet_stub
+configure:1485: checking for gethostbyname
+configure:1583: checking for connect
+configure:1675: checking for remove
+configure:1767: checking for shmat
+configure:1868: checking for IceConnectionNumber in -lICE
+configure:1924: checking for aa_init in -laa
+configure:1943: gcc -o conftest -O6 -m486 -fstrength-reduce -ffast-math -fomit-frame-pointer -fforce-mem -fforce-addr -funroll-loops  -I/usr/X11R6/include  -O conftest.c -laa     -L/usr/X11R6/lib -lX11  1>&5
+configure:2130: checking for main in -laa
+configure:2173: checking for Gpm_Repeat in -lgpm
+configure:2220: checking for pow in -lm
+configure:2267: checking for initscr in -lncurses
+configure:2363: checking for SLsmg_init_smg in -lslang
+configure:2411: checking for ANSI C header files
+configure:2515: checking for sys/wait.h that is POSIX.1 compatible
+configure:2560: checking for fcntl.h
+configure:2560: checking for limits.h
+configure:2560: checking for malloc.h
+configure:2560: checking for sys/ioctl.h
+configure:2560: checking for sys/time.h
+configure:2560: checking for unistd.h
+configure:2598: checking for working const
+configure:2673: checking for inline
+configure:2713: checking for pid_t
+configure:2746: checking for size_t
+configure:2779: checking whether time.h and sys/time.h may both be included
+configure:2817: checking for working alloca.h
+configure:2850: checking for alloca
+configure:3045: checking whether gcc needs -traditional
+configure:3091: checking for 8-bit clean memcmp
+configure:3127: checking return type of signal handlers
+configure:3170: checking for ftime
+configure:3170: checking for gettimeofday
+configure:3170: checking for select
+configure:3170: checking for strdup
+configure:3170: checking for strstr
+configure:3170: checking for strtol

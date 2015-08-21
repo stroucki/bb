@@ -1,0 +1,87 @@
+# Generated automatically from Makefile.in by configure.
+CC     = gcc
+#CFLAGS = -O6 -m486 -fstrength-reduce -ffast-math -fforce-mem -fforce-addr -funroll-loops -I/usr/include/ncurses   -I/usr/X11R6/include -Wall -fomit-frame-pointer -I ../lzo-0.27/include  -I ../aalib-1.0
+CFLAGS = -O2 -m486 -fstrength-reduce -ffast-math -I/usr/include/ncurses   -I/usr/X11R6/include -Wall -fomit-frame-pointer -I ../lzo-0.27/include  -I ../aalib-1.0
+#CFLAGS = -O6 -m486 -fstrength-reduce -ffast-math -fforce-mem -fforce-addr -funroll-loops -I/usr/include/ncurses   -I/usr/X11R6/include -Wall  -I ../lzo-0.27/include  -I ../aalib-1.0  -g
+LFLAGS = -L ../aalib-1.0 -laa ../text/libtext.a ../vga/libvga.a ../lzo-0.27/liblzo.a mikdos/libmik.a -lm
+
+INCL = config.h \
+ 
+SRCS = timers.c \
+       scene1.c \
+       scene2.c \
+       scene3.c \
+       tex.c \
+       scene9.c \
+       dos.c \
+       credits2.c \
+       textformat.c \
+       scene4.c \
+       uncompfnt.c \
+       backconv.c \
+       minilzo.c \
+       print.c \
+       bb.c \
+       zeb.c \
+       scene5.c \
+       scene7.c \
+       scene8.c \
+       credits.c \
+       zoom.c \
+       formulas.c \
+       julia.c \
+       autopilot.c \
+       ctrl87.c \
+       fk1.c \
+       fk2.c \
+       fk3.c \
+       fk4.c \
+       hh1.c \
+       hh2.c \
+       hh3.c \
+       hh4.c \
+       kt1.c \
+       kt2.c \
+       kt3.c \
+       kt4.c \
+       ms1.c \
+       ms2.c \
+       ms3.c \
+       ms4.c \
+       image.c \
+       messager.c
+
+OBJS = $(SRCS:.c=.o)
+
+#config.h:
+#cp config.autoconf config.h
+
+all:	mikdos/libmik.a bb
+
+
+ctrl87.o:ctrl87.c
+	gcc -c ctrl87.c
+
+bb:  $(OBJS)
+	$(CC) $(CFLAGS) -o bb $(OBJS) $(LIBS) $(LFLAGS)
+mikdos/libmik.a:
+	cd mikdos; make; cd ..
+
+
+clean:
+	rm -f bb
+	rm -f core `find . -name '*.[oas]' -print`
+	rm -f core `find . -name '*~' -print`
+	rm -f core `find . -type f -name 'core' -print`
+	cd mikdos; make clean; cd ..
+
+#dep:
+#	rm -f .depend
+#	make .depend
+#
+#.depend:
+#	echo '# Program dependencies' >.depend
+#	gcc -I svgalib $(DEFINES) -MM $(patsubst %.o,%.c,$(OBJS)) >>.depend
+#
+#include .depend
+

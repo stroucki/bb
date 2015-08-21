@@ -1,0 +1,31 @@
+Begin3
+Title:          BB - The portable demo
+Version:        1.2 [final3]
+Entered-date:   Mar 03 1998
+
+Description:    BB is an high quality audio-visual demonstration for your 
+                text terminal. It is portable demo, so you can run it on
+		plenty of operating systems and DOS. 
+
+Keywords:       X11 ascii-art text cool art ironing cooking fire library c GNU
+		demo fun game
+Author:         hubicka@limax.paru.cas.cz (Jan Hubicka)
+		kupsaf@feld.cvut.cz (Filip Kupsa)
+		titana@horac.ta.jcu.cz (Mojmir Svoboda)
+		toman@horac.ta.jcu.cz (Kamil Toman)
+Maintained-by:  toman@horac.ta.jcu.cz (Kamil Toman)
+
+Primary-site:   sunsite.unc.edu /pub/Linux/games
+		bb-1.2.tar.gz
+Alternate-site: tsx-11.mit.edu /pub/linux/sources/usr.bin
+		bb-1.2.tar.gz
+
+Platform:       dos (VG + MDA), stdio, curses, slang, X11, gpm, linux-console
+                Sound:  OSS, Sun audio, SGI, DEC Aplha, AIX, HP-UX, DOS 
+		        (GUS CLASSIC, GUS CLASSIC, GUS MAX, GUS ACE, GUS PNP,
+			 SB, ESS, PC-buzzer)
+	
+Copying-policy: GNU GENERAL PUBLIC LICENSE
+End
+
+

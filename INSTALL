@@ -1,0 +1,21 @@
+For Unix
+   You need following libraries: aalib
+   In most cases you should use:
+
+   CFLAGS=your best optimizing switches
+   export CFLAGS
+    #note that first two lines are usually not needed in case you use
+    #gnu c compiler where AA-lib uses quite good ones automatically
+   ./configure
+    #make sure that makefile contains your favorite switches
+   make
+   Follow instructions displayed by make to enable sound
+
+   see help for configure in case of problems
+
+For DOS:
+   You need following libraries: aalib, text, vga compiled
+    in same directory as you uncompress bb_src.zip
+
+     make -f makefile.dos
+

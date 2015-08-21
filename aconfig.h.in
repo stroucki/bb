@@ -1,0 +1,29 @@
+#ifndef ACONFIG_H
+#define ACONFIG_H
+#undef C_ALLOCA
+#undef const
+#undef HAVE_ALLOCA
+#undef HAVE_ALLOCA_H
+#undef HAVE_FTIME
+#undef HAVE_SELECT
+#undef HAVE_LONG_DOUBLE
+#undef inline
+#undef _POSIX_SOURCE
+#undef STDC_HEADERS
+/* Define if you can safely include both <sys/time.h> and <time.h>.  */
+#undef TIME_WITH_SYS_TIME
+#undef HAVE_GETTIMEOFDAY
+#undef HAVE_USLEEP
+#undef HAVE_TERMATTRS
+#undef HAVE_MOUSEMASK
+#undef HAVE_SETITIMER
+/* Define if you have the <limits.h> header file.  */
+#undef HAVE_LIMITS_H
+/* Define if you have the <sys/time.h> header file.  */
+#undef HAVE_SYS_TIME_H
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+#undef SIZEOF_SHORT
+#undef SIZEOF_INT
+#undef SIZEOF_LONG
+#endif

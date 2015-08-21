@@ -1,0 +1,138 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(mikdos/mirq.c)
+AC_CONFIG_HEADER(aconfig.h)
+
+use_cc_g_flag=no
+CCOPTS="$CFLAGS"
+AC_PROG_CC
+CFLAGS="$CCOPTS"
+AC_PROG_INSTALL
+AC_CHECK_PROG(system,uname,`uname`,unknown)
+if test "x$system" = xLinux; then
+AC_CHECK_PROG(machine,uname,`uname --machine`,unknown)
+fi
+AC_HEADER_STDC
+AC_CHECK_LIB(gpm, Gpm_Repeat)
+AC_CHECK_LIB(m, pow)
+AC_CHECK_LIB(ncurses, initscr)
+AC_CHECK_LIB(curses, initscr)
+dnl
+dnl This part supplies reasonable defaults for CFLAGS, if they weren't
+dnl specified by ''CFLAGS=flags ./configure''
+dnl
+cc_uses_g=yes
+if test x$GCC = xyes; then
+    if test x$ac_cv_prog_gcc_g = xyes; then
+	:
+    else
+	cc_uses_g=no
+    fi
+fi
+if test "x$CCOPTS" = x; then
+    if test x$GCC = xyes; then
+	if test x$machine = xi486; then
+	  mflag=486
+	fi
+	if test x$machine = xi586; then
+	  mflag=486
+	fi
+        if test x$mflag = x486; then
+            CCOPTS='-O6 -m486 -fstrength-reduce -ffast-math -fomit-frame-pointer -fforce-mem -fforce-addr -funroll-loops' 
+	    if test x$use_cc_g_flag = xyes; then
+		if test $cc_uses_g = yes; then
+		    CCOPTS='-m486 -g -O'
+		fi
+	    fi
+	else
+            CCOPTS='-O2 -fstrength-reduce -ffast-math -fforce-mem -fforce-addr -funroll-loops'
+	    if test x$use_cc_g_flag = xyes; then
+		if test $cc_uses_g = yes; then
+		    CCOPTS='-g -O'
+		fi
+	    fi
+	fi
+    else
+	if test x$use_cc_g_flag = xyes; then
+	    CCOPTS="$CFLAGS"
+	else
+	    CCOPTS=
+	fi
+    fi
+fi
+
+CFLAGS="$CCOPTS"
+CFLAGS=${CFLAGS--O}
+LDFLAGS=${LDFLAGS--O}
+search_aalib=true
+AC_DEFUN(AC_AALIB, [
+    if $search_aalib
+    then
+        if test -f $1/aalib.h
+        then
+            LIBS1="$LIBS"
+            LIBS="$LIBS $2"
+            unset ac_cv_lib_aa_aa_init
+            AC_CHECK_LIB(aa, aa_init)
+            if test "x$ac_cv_lib_aa_aa_init" = xyes; then
+              AC_MSG_RESULT(Found aalib on $1/aalib.h)
+              LIBS="$LIBS $2"
+              CFLAGS="$CFLAGS $3"
+              search_aalib=false
+            else
+             unset ac_cv_lib_aa_aa_init
+             LIBS="$LIBS1"
+            fi
+        fi
+    fi
+])
+
+dnl Checks for programs.
+AC_PROG_MAKE_SET
+
+dnl Checks for libraries.
+AC_PATH_X
+AC_PATH_XTRA
+if test "x$no_x" = x; then
+    LIBS="$LIBS $X_EXTRA_LIBS $X_LIBS -lX11"
+    CFLAGS="$CFLAGS $X_CFLAGS"
+fi
+AC_AALIB(/usr/include, , )
+AC_AALIB(/usr/local/include, -L/usr/local/lib, -I/usr/local/include)
+for name in ../aalib-*.*
+do
+AC_AALIB($name,"-L$name","-I$name")
+done
+if $search_aalib
+then
+  echo "--------------------------------------------------------"
+  echo "Library AA-lib is required for BB!"
+  echo "Please download it from ftp.ta.jcu.cz:/pub/aa"
+  echo "Install AA-lib into /usr/local/.. tree or just compile in same"
+  echo "directory as bb"
+  exit
+fi
+
+fi
+dnl Replace `main' with a function in -lslang:
+AC_CHECK_LIB(slang, SLsmg_init_smg)
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADERS(fcntl.h limits.h malloc.h sys/ioctl.h sys/time.h unistd.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+
+dnl Checks for library functions.
+AC_FUNC_ALLOCA
+AC_PROG_GCC_TRADITIONAL
+AC_FUNC_MEMCMP
+AC_TYPE_SIGNAL
+AC_CHECK_FUNCS(ftime gettimeofday select strdup strstr strtol)
+
+AC_OUTPUT(makefile)
