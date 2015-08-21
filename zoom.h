@@ -90,5 +90,5 @@ void enable_stereogram(zoom_context *);
 void disable_stereogram(zoom_context *);
 void init_tables(zoom_context *);
 void rotate_palette(zoom_context *, int direction);
-zoom_context *make_context(CONST int, CONST int, CONST int, CONST int, CONST int, void (*)(void), void (*)(void), char *, char *, double, double);
+zoom_context *make_context(CONST int, CONST int, CONST int, CONST int, CONST int, void (*)(void), void (*)(void), unsigned char *, unsigned char *, double, double);
 #endif				/* ZOOM_H */
