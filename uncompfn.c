@@ -25,7 +25,7 @@
 #include <aalib.h>
 #include "bb.h"
 
-struct font *uncompressfont(aa_font * font)
+struct font *uncompressfont(const aa_font * font)
 {
     struct font *ufont = malloc(sizeof(struct font));
     int i, y;
