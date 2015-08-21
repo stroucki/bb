@@ -1,7 +1,7 @@
 # Generated automatically from Makefile.in by configure.
 CC     = gcc
-CFLAGS = -O6 -m486 -fstrength-reduce -ffast-math -fomit-frame-pointer -fforce-mem -fforce-addr -funroll-loops  -I/usr/X11R6/include 
-LIBS   = -lslang -lncurses -lm -lgpm -laa -laa    -L/usr/X11R6/lib -lX11  
+CFLAGS = -O -Wall -I/usr/pkg/include  -I/usr/X11R7/include
+LIBS   = -lcurses -lm -laa -L/usr/pkg/lib   -L/usr/X11R7/lib -lX11
 LFLAGS = -O
 
 INCL = config.h 
