@@ -77,7 +77,7 @@ static void morphdraw()
     int mul1 = 256 - mul;
     int i;
     int size = aa_imgwidth(context) * (aa_imgheight(context) - YSTART * 2);
-    char *c = context->imagebuffer + aa_imgwidth(context) * 2 * YSTART;
+    unsigned char *c = context->imagebuffer + aa_imgwidth(context) * 2 * YSTART;
     for (i = 0; i < size; i++, c++) {
 	*c = (source[i] * mul1 + target[i] * mul) >> 8;
     }

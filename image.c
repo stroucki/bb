@@ -28,12 +28,12 @@
 #include "bb.h"
 #include "image.h"
 typedef double atype;
-static void fastcscale(char *b1, char *b2, int x1, int x2, int y1, int y2, int width1, int width2)
+static void fastcscale(unsigned char *b1, unsigned char *b2, int x1, int x2, int y1, int y2, int width1, int width2)
 {
     int ddx1, ddx, spx = 0, ex;
     int ddy1, ddy, spy = 0, ey;
     int x;
-    char *bb1 = b1;
+    unsigned char *bb1 = b1;
     width2 -= x2;
     if (!x1 || !x2 || !y1 || !y2)
 	return;
@@ -78,7 +78,7 @@ void scale(struct image *image, int x1, int y1, int x2, int y2)
     int imgheight = image->height;
     int d = 0;
     static atype xstep, ystep;
-    char *imgdata;
+    unsigned char *imgdata;
     if (x2 < 0 || x1 >= imgwidth || y2 < 0 || y1 >= imgheight) {
 	memset(c->imagebuffer, 0, aa_imgwidth(c) * aa_imgheight(c));
 	return;
@@ -128,7 +128,7 @@ void scale2(struct image *image, int x1, int y1, int x2, int y2)
     int imgheight = image->height;
     int d = 0;
     static atype xstep, ystep;
-    char *imgdata;
+    unsigned char *imgdata;
     dualmode ^= 1;
     if (image->decompressed == NULL)
 	decompressimg(image), d = 1;
@@ -166,10 +166,10 @@ void scale2(struct image *image, int x1, int y1, int x2, int y2)
     return;
 }
 
-char *decompressimg(struct image *image)
+unsigned char *decompressimg(struct image *image)
 {
-    char *data = malloc(image->width * image->height + 5);
-    int size = image->width * image->height;
+    unsigned char *data = malloc(image->width * image->height + 5);
+    unsigned int size = image->width * image->height;
     int r;
     r = lzo1x_decompress(image->data, image->size, data, &size, NULL);
     if (r != LZO_E_OK) {
