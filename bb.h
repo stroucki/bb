@@ -28,7 +28,7 @@
 #include "timers.h"
 struct font {
     int width, height;
-    char *data;
+    unsigned char *data;
 };
 
 #define clrscr() memset(context->imagebuffer,0,aa_imgwidth(context)*aa_imgheight(context))
@@ -52,8 +52,8 @@ void centerprint(int x, int y, double size, int color, char *text,int mode);
 double getwidth(double);
 void centerprinth(int x, int y, double size, int color, char *text,int mode);
 
-struct font *uncompressfont(aa_font * font);
-void fastscale(char *b1, char *b2, int x1, int x2, int y1, int y2, int width1, int width2, int color);
+struct font *uncompressfont(const aa_font * font);
+void fastscale(unsigned char *b1, unsigned char *b2, int x1, int x2, int y1, int y2, int width1, int width2, int color);
 void print(int x, int y, float width, int height, struct font *f, int color, char *text);
 void draw(void);
 void bbwait(int);
