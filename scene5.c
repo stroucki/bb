@@ -28,7 +28,7 @@
 #include "tex.h"
 
 static unsigned char *helpbuffer;
-static unsigned char *text, *text1;
+static char *text, *text1;
 static int aaval = -1, colorval;
 static int sstarttime;
 
