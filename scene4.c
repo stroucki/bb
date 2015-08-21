@@ -80,7 +80,7 @@ static void drawfire(int n)
 	i1 = 1;
 	i2 = 4 * XSIZ + 1;
 	if (endtime - TIME > 2000000) {
-	    for (p = (char *) bitmap + XSIZ * (YSIZ + 0); p < ((unsigned char *) bitmap + XSIZ * (YSIZ + 1)); p++, i1 += 4, i2 -= 4) {
+	    for (p = (unsigned char *) bitmap + XSIZ * (YSIZ + 0); p < ((unsigned char *) bitmap + XSIZ * (YSIZ + 1)); p++, i1 += 4, i2 -= 4) {
 		last1 = rand() % min(i1, min(i2, height));
 		i = rand() % 6;
 		for (; p < (unsigned char *) bitmap + XSIZ * (YSIZ + 1) && i != 0; p++, i--, i1 += 4, i2 -= 4)

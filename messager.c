@@ -86,8 +86,8 @@ void tographics()
 {
     backconvert(0, start, aa_scrwidth(context), aa_scrheight(context));
 }
-static char *bckup;
-static char *bckup1;
+static unsigned char *bckup;
+static unsigned char *bckup1;
 
 #define STAGE (TIME-starttime)
 
@@ -153,10 +153,10 @@ static void toblack1()
 
 void devezen1()
 {
-    bckup = (char *) malloc(aa_imgwidth(context) * aa_imgheight(context));
+    bckup = (unsigned char *) malloc(aa_imgwidth(context) * aa_imgheight(context));
     memcpy(bckup, context->imagebuffer, aa_imgwidth(context) * aa_imgheight(context));
     tographics();
-    bckup1 = (char *) malloc(aa_imgwidth(context) * aa_imgheight(context));
+    bckup1 = (unsigned char *) malloc(aa_imgwidth(context) * aa_imgheight(context));
     memcpy(bckup1, context->imagebuffer, aa_imgwidth(context) * aa_imgheight(context));
     drawptr = toblack1;
     timestuff(0, NULL, toblack1, 5000000);
