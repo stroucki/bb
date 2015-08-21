@@ -25,12 +25,12 @@
 #include "config.h"
 #include "bb.h"
 
-void fastscale(char *b1, char *b2, int x1, int x2, int y1, int y2, int width1, int width2, int color)
+void fastscale(unsigned char *b1, unsigned char *b2, int x1, int x2, int y1, int y2, int width1, int width2, int color)
 {
     int ddx1, ddx, spx = 0, ex;
     int ddy1, ddy, spy = 0, ey;
     int x;
-    char *bb1 = b1;
+    unsigned char *bb1 = b1;
     width2 -= x2;
     if (!x1 || !x2 || !y1 || !y2)
 	return;
@@ -67,10 +67,14 @@ void fastscale(char *b1, char *b2, int x1, int x2, int y1, int y2, int width1, i
     }
 }
 
-static INLINE void pscale(int x1, int y1, int x2, int y2, char *data, int w, int h, int color)
+static INLINE void pscale(int x1, int y1, int x2, int y2, unsigned char *data, int w, int h, int color)
 {
     float step;
     int xx1, xx2, yy1, yy2;
+
+    /* XXXstroucki we need x1 != x2 and y1 != y2 */
+    if (x1 == x2 || y1 == y2) return;
+
     if (x1 >= 0 && x2 < aa_imgwidth(context) && y1 >= 0 && y2 <= aa_imgheight(context))
 	fastscale(data, context->imagebuffer + x1 + aa_imgwidth(context) * y1, w, x2 - x1, h, y2 - y1, w, aa_imgwidth(context), color);
     if (x2 <= 0 || x1 >= aa_imgwidth(context) || y2 <= 0 || y1 >= aa_imgheight(context))
