@@ -64,10 +64,11 @@ static void dvojprujezd2(int starttime, char *text1, char *text2)
 
 void message(char *text, int starttime)
 {
-    if (STATE > 0 && STATE < MAXPOS) {
-	double pp = STATE * M_PI / MAXPOS * 2;
+    int state = STATE;
+    if (state > 0 && state < MAXPOS) {
+	double pp = state * M_PI / MAXPOS * 2;
 	double width = (1 + cos(pp)) * 5 + 2;
-	int pos = aa_imgheight(context) - aa_imgheight(context) * STATE / MAXPOS;
+	int pos = aa_imgheight(context) - aa_imgheight(context) * state / MAXPOS;
 	if (width <= 0)
 	    return;
 	centerprint(aa_imgwidth(context) / 2, pos, width, sin(pp / 2) * 255, text, 0);
@@ -123,41 +124,54 @@ void drawzoomer(char *mesg, int starttime, int pos)
 
 void drawlevotoc(char *mesg, char *mesg1, int starttime)
 {
-    if (STATE < ETIME2 && STATE > 0) {
-	print(0, 0, aa_imgwidth(context) / (double) strlen(mesg) * ((float) STATE / ETIME2), aa_imgheight(context), font, 255, mesg);
-	print(aa_imgwidth(context) * ((float) STATE / ETIME2), 0, aa_imgwidth(context) / (double) strlen(mesg1) * (1 - (float) STATE / ETIME2), aa_imgheight(context), font, 255, mesg1);
+    int state = STATE;
+    int width = aa_imgwidth(context);
+    int height = aa_imgheight(context);
+    float ratio = ((float) state / ETIME2);
+    if (state < ETIME2 && state > 0) {
+	print(0, 0, width / (double) strlen(mesg) * ratio, height, font, 255, mesg);
+	print(width * ratio, 0, width / (double) strlen(mesg1) * (1 - ratio), height, font, 255, mesg1);
     }
-    if (STATE > ETIME2)
-	print(0, 0, aa_imgwidth(context) / (double) strlen(mesg), aa_imgheight(context), font, 255, mesg);
+    if (state > ETIME2)
+	print(0, 0, width / (double) strlen(mesg), height, font, 255, mesg);
 }
 
 void drawpravotoc(char *mesg, char *mesg1, int starttime)
 {
-    if (STATE < ETIME2 && STATE > 0) {
-	print(0, 0, aa_imgwidth(context) / (double) strlen(mesg1) * (1 - (float) STATE / ETIME2), aa_imgheight(context), font, 255, mesg1);
-	print(aa_imgwidth(context) * (1 - (float) STATE / ETIME2), 0, aa_imgwidth(context) / (double) strlen(mesg) * ((float) STATE / ETIME2), aa_imgheight(context), font, 255, mesg);
+    int state = STATE;
+    int width = aa_imgwidth(context);
+    int height = aa_imgheight(context);
+    float ratio = ((float) state / ETIME2);
+    if (state < ETIME2 && state > 0) {
+	print(0, 0, width / (double) strlen(mesg1) * (1 - ratio), height, font, 255, mesg1);
+	print(width * (1 - ratio), 0, width / (double) strlen(mesg) * ratio, height, font, 255, mesg);
     }
-    if (STATE > ETIME2)
-	print(0, 0, aa_imgwidth(context) / (double) strlen(mesg), aa_imgheight(context), font, 255, mesg);
+    if (state > ETIME2)
+	print(0, 0, width / (double) strlen(mesg), height, font, 255, mesg);
 }
 
 void drawhorotoc(char *mesg, char *mesg1, int starttime)
 {
-    if (STATE < ETIME2 && STATE > 0) {
-	print(0, 0, aa_imgwidth(context) / strlen(mesg), aa_imgheight(context) * ((float) STATE / ETIME2), font, 255, mesg);
-	print(0, aa_imgheight(context) * ((float) STATE / ETIME2), aa_imgwidth(context) / strlen(mesg1), aa_imgheight(context) * (1 - (float) STATE / ETIME2), font, 255, mesg1);
+    int state = STATE;
+    int width = aa_imgwidth(context);
+    int height = aa_imgheight(context);
+    float ratio = ((float) state / ETIME2);
+    if (state < ETIME2 && state > 0) {
+	print(0, 0, width / strlen(mesg), height * ratio, font, 255, mesg);
+	print(0, height * ratio, width / strlen(mesg1), height * (1 - ratio), font, 255, mesg1);
     }
-    if (STATE > ETIME2)
-	print(0, 0, aa_imgwidth(context) / strlen(mesg), aa_imgheight(context), font, 255, mesg);
+    if (state > ETIME2)
+	print(0, 0, width / strlen(mesg), height, font, 255, mesg);
 }
 
 #define LTIME 200000
 
 void drawprujezd(char *mesg, int starttime)
 {
-    double height = aa_imgheight(context) / 3 + aa_imgheight(context) / 4 * cos(STATE / (double) LTIME);
+    int state = STATE;
+    double height = aa_imgheight(context) / 3 + aa_imgheight(context) / 4 * cos(state / (double) LTIME);
     double width = (double) aa_imgwidth(context) * 0.75 * 2.0 / 3.0 / 3;
-    int pos = aa_imgwidth(context) - width * STATE / LTIME;
+    int pos = aa_imgwidth(context) - width * state / LTIME;
     print(pos + height, (aa_imgheight(context) - height) / 2, width, height, font, 255, mesg);
 }
 
