@@ -41,7 +41,7 @@
 #define MAXEFECT2 (N_STEP*EFECT2*20-N_STEP)
 
 char *text;
-struct font *font;
+extern struct font *font;
 static int cursorx, cursory;
 void (*drawptr) ();
 
