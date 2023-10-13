@@ -22,7 +22,7 @@
  */
 
 #include <math.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "bb.h"
 #define STATE1 (TIME-starttime1)
 #define STATE (time-starttime)

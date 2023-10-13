@@ -49,7 +49,7 @@
 
 static int sndfd;
 static int fragmentsize;
-static char *audiobuffer;
+static signed char *audiobuffer;
 
 
 static BOOL Vox_IsThere(void)
@@ -112,7 +112,7 @@ static BOOL Vox_Init(void)
 	close(sndfd);
 	return 0;
     }
-    audiobuffer = (char *) MyMalloc(fragmentsize * sizeof(char));
+    audiobuffer = (signed char *) MyMalloc(fragmentsize * sizeof(char));
 
     if (audiobuffer == NULL) {
 	VC_Exit();

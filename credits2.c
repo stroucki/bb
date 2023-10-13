@@ -25,7 +25,6 @@
 #include <math.h>
 #include <ctype.h>
 #include <string.h>
-#include <malloc.h>
 #include <stdlib.h>
 #include "bb.h"
 #define STATE (TIME-starttime)

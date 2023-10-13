@@ -318,7 +318,7 @@ UWORD TrkLen(UBYTE * t)
     UWORD len = 0;
     UBYTE c;
 
-    while (c = *t & 0x1f) {
+    while ((c = *t & 0x1f)) {
 	len += c;
 	t += c;
     }

@@ -426,6 +426,7 @@ static void main_loop(void)
 	   } */
 	displayed = 0;
 	inmovement = ui_mouse();
+	(void)inmovement;
     }
 }
 static void flip_buffers(void)

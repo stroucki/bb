@@ -622,15 +622,15 @@ struct echoData {
 /* extra extern variables used in interface functions */
 
 extern int tolerant;
-int quit;
-int quiet;
-int play_current;
-int pause_flag;
+extern int quit;
+extern int quiet;
+extern int play_current;
+extern int pause_flag;
 extern char *optarg;
 extern int optind;
 extern int opterr;
-int ui_result;
-float speed_constant;
+extern int ui_result;
+extern float speed_constant;
 extern char *d_text[];
 
 /**************************************************************************

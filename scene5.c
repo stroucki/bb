@@ -22,7 +22,7 @@
  */
 
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <math.h>
 #include "bb.h"
 #include "tex.h"

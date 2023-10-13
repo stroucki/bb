@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <aalib.h>
 #include "bb.h"
 #define MAXLINES 10000

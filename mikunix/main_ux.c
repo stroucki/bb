@@ -53,7 +53,6 @@ static int load_sng(char *name)
 
 int main(int argc, char *argv[])
 {
-    int t, i;
     md_dmabufsize = 10000;
     md_mode = 0;
     md_device = 0;

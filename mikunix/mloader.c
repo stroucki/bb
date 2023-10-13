@@ -48,7 +48,6 @@ void ML_InfoLoader(void)
 
 void ML_RegisterLoader(LOADER * ldr)
 {
-    LOADER *l;
 
     if (firstloader == NULL) {
 	firstloader = ldr;
@@ -150,7 +149,6 @@ BOOL AllocTracks(void)
 
 BOOL AllocInstruments(void)
 {
-    UWORD t;
 
     if (!(of.instruments = (INSTRUMENT *) MyCalloc(of.numins, sizeof(INSTRUMENT))))
 	return 0;
@@ -162,7 +160,7 @@ BOOL AllocSamples(INSTRUMENT * i)
 {
     UWORD u, n;
 
-    if (n = i->numsmp) {
+    if ((n = i->numsmp)) {
 	if (!(i->samples = (SAMPLE *) MyCalloc(n, sizeof(SAMPLE))))
 	    return 0;
 

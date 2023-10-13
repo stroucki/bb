@@ -40,7 +40,7 @@ void do_julia(zoom_context * context, register number_t pre, register number_t p
     int i, i1, i2, j, x, y, scanline = context->scanline;
     int iter;
     number_t rp = 0, ip = 0 /*, t */ ;
-    register number_t zre, zim, im, xdelta, ydelta, br, tmp, range,
+    register number_t zre, zim, im, xdelta, ydelta, range,
      rangep;
     number_t xstep, ystep;
     unsigned char *queue[QMAX];

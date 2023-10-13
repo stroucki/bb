@@ -31,9 +31,6 @@
 #else
 #include <stdlib.h>
 #include <stdio.h>
-#ifndef _MAC
-#include <malloc.h>
-#endif
 #ifdef __DJGPP__
 #include "aconfig.dos"
 #else
@@ -199,8 +196,7 @@ struct dyn_data {
 #define adddata(n,i) ((((n)<<DSIZES)+(((i)&(DSIZEHMASK)))))
 #define getbest(i) (((size)<<DSIZES)+(i))
 
-/* XXXstroucki operation may be undefined */
-#define PRICE(i,i1) ((((ftmp=((i)-(i1)))*ftmp)*(rangedelta)))
+#define PRICE(i,i1) (( (i)-(i1) * (i)-(i1) * rangedelta ))
 #define NEWPRICE (FPMUL)
 
 #define NOSETMASK ((unsigned int)0x80000000)

@@ -33,12 +33,9 @@
 #else
 #include "aconfig.h"
 #endif
-#include <malloc.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#ifndef _MAC
-#include <malloc.h>
-#endif
 #ifdef HAVE_SETITIMER
 #include <signal.h>
 #endif
@@ -77,8 +74,7 @@ static struct timeb currenttime;
 #ifdef _plan9_
 static int currenttime;
 #endif
-static int registered = 0, reghandler = 0;
-static tl_group group1, group2;
+static tl_group group1;
 tl_group *syncgroup = &group1,
 #ifdef HAVE_SETITIMER
 *asyncgroup = &group2;

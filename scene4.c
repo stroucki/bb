@@ -53,9 +53,7 @@ static void gentable()
 
 static void firemain()
 {
-    register unsigned int i;
     unsigned char *p;
-    i = 0;
 #define END (bitmap + XSIZ * YSIZ)
     for (p = bitmap;
 	 p <= (unsigned char *) (END); p += 1) {

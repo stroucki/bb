@@ -53,7 +53,6 @@ static VINFO *vnf;
 static UWORD samplesthatfit;
 static SLONG idxsize, idxlpos, idxlend, maxvol;
 
-static long per256;
 static int ampshift;
 
 
@@ -142,7 +141,6 @@ static SBYTE *Samples[MAXSAMPLEHANDLES];
 
 BOOL LargeRead(SBYTE * buffer, ULONG size)
 {
-    int t;
     ULONG todo;
 
     while (size) {
@@ -324,7 +322,7 @@ static void VC_AddChannel(SLONG * ptr, UWORD todo)
  */
 {
     SLONG end;
-    UWORD done, needs;
+    UWORD done;
     SBYTE *s;
 
     while (todo > 0) {

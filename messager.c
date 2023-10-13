@@ -22,7 +22,7 @@
  */
 
 #include <string.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "bb.h"
 
 static int cursor_x, cursor_y;

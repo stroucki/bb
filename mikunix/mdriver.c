@@ -10,8 +10,10 @@
    All systems - all compilers
 
  */
+#define _XOPEN_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "mikmod.h"
 
 DRIVER *firstdriver = NULL, *md_driver;
@@ -75,6 +77,7 @@ void SL_Load(void *buffer, ULONG length)
 #else
 	    /* assume machine is little endian by default */
 	    if (sl_infmt & SF_BIG_ENDIAN)
+		// XXXstroucki swab wants restrict pointers
 		swab((char *) sl_buffer, (char *) sl_buffer, stodo << 1);
 #endif
 	} else {

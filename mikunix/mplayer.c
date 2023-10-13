@@ -58,7 +58,7 @@ static UBYTE globalslide;
 AUDTMP *a;			/* current AUDTMP it's working on */
 
 float old_bpm;
-extern float speed_constant;
+float speed_constant;
 extern int quiet;
 
 UWORD mytab[12] =
@@ -148,6 +148,8 @@ UWORD logtab[] =
     LOGFAC * 480, LOGFAC * 477, LOGFAC * 474, LOGFAC * 470, LOGFAC * 467, LOGFAC * 463, LOGFAC * 460, LOGFAC * 457,
     LOGFAC * 453, LOGFAC * 450, LOGFAC * 447, LOGFAC * 443, LOGFAC * 440, LOGFAC * 437, LOGFAC * 434, LOGFAC * 431
 };
+
+int pause_flag;
 
 SWORD Interpolate(SWORD p, SWORD p1, SWORD p2, SWORD v1, SWORD v2)
 {
@@ -360,7 +362,7 @@ void DoEEffects(UBYTE dat)
 void DoVibrato(void)
 {
     UBYTE q;
-    UWORD temp;
+    UWORD temp = 0;
 
     q = (a->vibpos >> 2) & 0x1f;
 
@@ -400,7 +402,7 @@ void DoVibrato(void)
 void DoTremolo(void)
 {
     UBYTE q;
-    UWORD temp;
+    UWORD temp = 0;
 
     q = (a->trmpos >> 2) & 0x1f;
 
@@ -748,7 +750,7 @@ void DoS3MTempo(UBYTE tempo)
 
 void DoToneSlide(void)
 {
-    int dist, t;
+    int dist;
 
     if (!vbtick) {
 	a->tmpperiod = a->period;
@@ -819,7 +821,7 @@ void PlayNote(void)
 
     UniSetRow(a->row);
 
-    while (c = UniGetByte()) {
+    while ((c = UniGetByte())) {
 
 	switch (c) {
 
@@ -911,7 +913,7 @@ void PlayEffects(void)
     a->ownper = 0;
     a->ownvol = 0;
 
-    while (c = UniGetByte()) {
+    while ((c = UniGetByte())) {
 
 	switch (c) {
 
@@ -1240,8 +1242,7 @@ long GetFreq2(long period)
 void MP_HandleTick(void)
 {
     ULONG tmpvol;
-    int z, t, tr, ui_result;
-    BOOL reinit_audio = 0;
+    int t, tr;
 
     pause_flag = -128;
     if (isfirst) {
